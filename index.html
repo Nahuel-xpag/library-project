@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-lesson-object</title>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="main">
+        <div id="book-card">
+        </div>
+        <div class="buttons">
+            <button id="next">Next Book</button>
+            <button id="remove">Remove Book</button>
+            <button id="add-book">Add Book</button>
+        </div>
+        <div class="form">
+            <form action="">
+                <legend>Add your book info.</legend>
+                    <div class="book-title-div">
+                        <label for="book-title">Title of the book</label>
+                        <input type="text" id="book-title"
+                         name="book-title" required>
+                    </div>
+
+                    <div class="author-div">
+                        <label for="book-author">Author</label>
+                        <input type="text" id="book-author" 
+                        name="book-author" required>
+                    </div>
+
+                    <div class="pages-div">
+                        <label for="book-pages">How many pages long is the book?</label>
+                        <input type="number" id="book-pages" 
+                        name="book-pages" required>
+                    </div>
+
+                    <div class="read-div">
+                        <label for="read">Have you read it?</label>
+                        <section id="read">
+                            <label for="its-read">Yes</label>
+                            <input type="radio" id="its-read" name="is-read" value="Not yet">
+                            <label for="its-not-read">Not yet</label>
+                            <input type="radio" id="its-not-read" name="is-read" value="Yes">
+                        </section>
+                        <button id="submit-book">Add</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

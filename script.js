@@ -23,17 +23,21 @@ addBookToLibrary(elAleph);
 console.log(myLybrary)
 
 const card = document.querySelector('#book-card');
-
+//function to change the read status
+function changeReadStatus(e) {
+myLybrary[e]['read'] = true;
+}
 function display(n) {
+    const bookTitle = document.createElement('h2');
+    const bookAuthor = document.createElement('h3');
+    const bookPages = document.createElement('h4');
+    const isRead = document.createElement('h5');
+    const readButton = document.createElement('button')
     if (myLybrary.length < 1) {
         bookTitle.textContent = 'There is nothing to show. Try adding a book.'
         card.appendChild(bookTitle);
     }
     else{
-        const bookTitle = document.createElement('h2');
-        const bookAuthor = document.createElement('h3');
-        const bookPages = document.createElement('h4');
-        const isRead = document.createElement('h5');
         
         card.setAttribute('data', n);
         bookTitle.textContent = 'Title:' + ' ' + myLybrary[n]['title'];
@@ -41,11 +45,20 @@ function display(n) {
         bookPages.textContent = 'pages:' + ' ' + myLybrary[n]['pages'];
         myLybrary[n]['read'] === true ? isRead.textContent = 'I have read it!' :
         isRead.textContent = 'I am yet to read it';
-    
+        
         card.appendChild(bookTitle);
         card.appendChild(bookAuthor);
         card.appendChild(bookPages);
         card.appendChild(isRead);
+        if (isRead.textContent === 'I am yet to read it'){
+            readButton.textContent = 'Finished'
+            card.appendChild(readButton);
+            readButton.addEventListener('click', () => {
+                changeReadStatus(n);
+                clear();
+                display(n);
+            });
+        }
     }
 }
 display(0);
@@ -88,25 +101,28 @@ formContainer.toggleAttribute('visible');
 })
 
 const submitBook = document.querySelector('#submit-book');
-submitBook.addEventListener('click', () =>{
+submitBook.addEventListener('click', (event) =>{
+
+    event.preventDefault();
     function handleSubmit() {
+        //get input        
+        const titleInput = document.querySelector('#book-title').value;
+        const authorInput = document.querySelector('#book-author').value;
+        const pagesInput = document.querySelector('#book-pages').value;
+        const isReadInput = document.querySelector('input[name="is-read"]:checked');
+        const isRead = isReadInput.value === 'Yes' ? true : false;
+        
         let submittedBook = new Book(titleInput, 
-             authorInput, pagesInput, readResult());
+             authorInput, pagesInput, isRead);
          addBookToLibrary(submittedBook);
-     };
-     handleSubmit()
+     }  
+        handleSubmit();
+        clear();
+        display(0);
+
 })
-//handle book submit
+
 let formDiv = document.querySelector('.form');
-const titleInput = document.querySelector('#book-title').value;
-const authorInput = document.querySelector('#book-author').value;
-const pagesInput = document.querySelector('#book-pages').value;
-const readInput = document.querySelector('#its-read');
-function readResult() {
-    readInput.hasAttribute(checked) ? true : false;
-}
 
 
-function submitPrevent(event) {
-        event.preventDefault();
-}
+

@@ -26,7 +26,7 @@ border-radius: 12px;
 font-size: 1.5rem;
 background-color: rgb(252, 102, 237);
 }
-.buttons button:hover{
+.buttons button:hover, #submit-book:hover, #book-card button:hover{
     background-color: rgb(61, 0, 55);
     color: #fff;
     cursor: pointer;
@@ -51,6 +51,15 @@ background-color: rgb(252, 102, 237);
 
 #book-card h3, h4, h5 {
     font-size: 2rem;
+}
+
+#book-card button {
+    font-size: 2rem;
+    height: 10%;
+    width: 20%;
+    border-radius: 12px;
+    background-color: #8cb9ae;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.397);
 }
 .form {
     border-radius: 12px;
